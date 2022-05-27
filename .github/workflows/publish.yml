@@ -62,6 +62,10 @@ jobs:
       # Render the notebook
       - name: Render the notebook
         run: |
+          cp adam-key $HOME/adam-key
+          cp egi_fedcloud.cfg $HOME/egi_fedcloud.cfg
+          cp rohub-user $HOME/rohub-user
+          cp rohub-pwd $HOME/rohub-pwd
           jupyter nbconvert  --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute ${{steps.config_file.outputs.prop}} 
       - name: Commit
         run: |
