@@ -52,17 +52,17 @@ jobs:
           sed -i 's/ROHUB-TOKEN/${{secrets.ROHUB_KEY_VALUE}}/g' rohub-pwd
       - name: EGI-ID
         run: |
-	  sed -i "s/EGI-ID/${{secrets.EGI_ID}}/g" "egi_fedcloud.cfg"
+          sed -i "s/EGI-ID/${{secrets.EGI_ID}}/g" "egi_fedcloud.cfg"
       - name: EGI-SECRET
         run: |
-	  sed -i "s/EGI-SECRET/${{secrets.EGI_SECRET}}/g" "egi_fedcloud.cfg"
+          sed -i "s/EGI-SECRET/${{secrets.EGI_SECRET}}/g" "egi_fedcloud.cfg"
       - name: EGI-TOKEN
         run: |
-	  sed -i "s/EGI-TOKEN/${{secrets.EGI_TOKEN}}/g" "egi_fedcloud.cfg"
+          sed -i "s/EGI-TOKEN/${{secrets.EGI_TOKEN}}/g" "egi_fedcloud.cfg"
       # Render the notebook
       - name: Render the notebook
         run: |
-          jupyter nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute ${{steps.config_file.outputs.prop}} 
+          jupyter nbconvert  --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute ${{steps.config_file.outputs.prop}} 
       - name: Commit
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
