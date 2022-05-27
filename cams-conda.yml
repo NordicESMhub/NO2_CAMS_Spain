@@ -1,0 +1,20 @@
+name: cams
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - proj
+  - fiona
+  - geopandas
+  - xesmf
+  - rasterio
+  - geojson-rewind
+  - cmaps 
+  - jinja2<=3.0.2
+  - holoviews<1.14.8 
+  - hvplot
+  - GeoViews
+  - cartopy
+  - ipython
+  - ipykernel
