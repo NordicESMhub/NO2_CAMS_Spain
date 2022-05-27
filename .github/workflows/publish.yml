@@ -49,7 +49,7 @@ jobs:
           sed -i "s/ROHUB-USERNAME/${{secrets.ROHUB_KEY_NAME}}/g" "rohub-user"
       - name: ROHUB-TOKEN
         run: |
-          sed -i 's/ROHUB-TOKEN/${{secrets.ROHUB_KEY_VALUE}}/g' rohub-pwd
+          sed -i "s/ROHUB-TOKEN/${{secrets.ROHUB_KEY_VALUE}}/g" "rohub-pwd"
       - name: EGI-ID
         run: |
           sed -i "s/EGI-ID/${{secrets.EGI_ID}}/g" "egi_fedcloud.cfg"
