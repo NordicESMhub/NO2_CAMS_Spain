@@ -44,7 +44,9 @@ jobs:
       # Render the notebook
       - name: Render the notebook
         run: |
-          cat "${{ secrets.ADAM_KEY_INFO }}" >> $HOME/adam-key
+          echo ${{ secrets.ADAM_KEY_INFO }} >> $HOME/adam-key
+          echo ${{ secrets.ROHUB_KEY_NAME }} >> $HOME/rohub-user
+          echo ${{ secrets.ROHUB_KEY_VALUE }} >> $HOME/rohub-pwd
           jupyter nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute ${{steps.config_file.outputs.prop}} 
       - name: Commit
         run: |
