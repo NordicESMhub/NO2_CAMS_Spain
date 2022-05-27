@@ -41,16 +41,27 @@ jobs:
         with: 
           path: 'config.json'
           prop_path: 'notebook_name'
+      - name: ADAM
+        run: |
+          sed -i "s/ADAM-KEY/${{ secrets.ADAM_KEY_INFO }}/g" "adam-key"
+      - name: ROHUB-USER
+        run: |
+          sed -i "s/ROHUB-USERNAME/${{secrets.ROHUB_KEY_NAME}}/g" "rohub-user"
+      - name: ROHUB-TOKEN
+        run: |
+          sed -i 's/ROHUB-TOKEN/${{secrets.ROHUB_KEY_VALUE}}/g' rohub-pwd
+      - name: EGI-ID
+        run: |
+	  sed -i "s/EGI-ID/${{secrets.EGI_ID}}/g" "egi_fedcloud.cfg"
+      - name: EGI-SECRET
+        run: |
+	  sed -i "s/EGI-SECRET/${{secrets.EGI_SECRET}}/g" "egi_fedcloud.cfg"
+      - name: EGI-TOKEN
+        run: |
+	  sed -i "s/EGI-TOKEN/${{secrets.EGI_TOKEN}}/g" "egi_fedcloud.cfg"
       # Render the notebook
       - name: Render the notebook
         run: |
-	  sed -i "s/ADAM-KEY/${{secrets.ADAM_KEY_INFO}}/g" "adam-key"
-	  sed -i "s/ROHUB-USERNAME/${{secrets.ROHUB_KEY_NAME}}/g" "rohub-user"
-	  sed -i "s/ROHUB-TOKEN/${{secrets.ROHUB_KEY_VALUE}}/g" "rohub-pwd"
-	  sed -i "s/EGI-ID/${{secrets.EGI_ID}}/g" "egi_fedcloud.cfg"
-	  sed -i "s/EGI-SECRET/${{secrets.EGI_SECRET}}/g" "egi_fedcloud.cfg"
-	  sed -i "s/EGI-TOKEN/${{secrets.EGI_TOKEN}}/g" "egi_fedcloud.cfg"
-          echo "Start conversion"
           jupyter nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute ${{steps.config_file.outputs.prop}} 
       - name: Commit
         run: |
